@@ -11,6 +11,9 @@ class Driver {
 	}
 }
 
+let eastWest = ['1st Avenue', '2nd Avenue', '3rd Avenue', 'Lexington Avenue', 'Park', 'Madison Avenue', '5th Avenue']
+
+
 class Route{
 	constructor(beginningLocation, endingLocation){
 		this.beginningLocation = beginningLocation
@@ -18,12 +21,19 @@ class Route{
 	}
 
 	blocksTravelled(){
-		let blocksTravelled = this.endingLocation.vertical -this.beginningLocation.vertical;
+		let blocksTravelledVertical = this.endingLocation.vertical - this.beginningLocation.vertical;
+		let blocksTravelledHorizontal = eastWest.indexOf(this.endingLocation.horizontal) - eastWest.indexOf(this.beginningLocation.horizontal)
+		let blocksTravelled = blocksTravelledHorizontal + blocksTravelledVertical
 		return blocksTravelled;
 	}
 
-	estimatedTime(){
-		let minutes = this.blocksTravelled() / 3;
-		return minutes;
+	estimatedTime(boolean){
+		if(boolean){
+			let minutes = this.blocksTravelled()/2;
+			return minutes;
+		} else {
+			let minutes = this.blocksTravelled() / 3;
+			return minutes;
+		}
 	}
 }
